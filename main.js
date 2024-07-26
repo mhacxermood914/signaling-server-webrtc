@@ -3,11 +3,11 @@ require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 
-const PORT = 8010;
+const PORT = 3000;
 
 const app = express();
 const socketIo = require('socket.io')
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT | PORT, () => {
     console.log('server is running on http://localhost:3000')
 })
 
