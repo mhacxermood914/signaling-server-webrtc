@@ -17,17 +17,11 @@ let rooms = {};
 io.on("connection", socket => {
     socket.on("join", data => {
 
-        // let a new user join to the room
-
         const roomId = data.room
 
         socket.join(roomId);
 
         socketToRoom[socket.id] = roomId;
-
-
-
-        // persist the new user in the room
 
         if (rooms[roomId]) {
 
@@ -39,25 +33,9 @@ io.on("connection", socket => {
 
         }
 
+        const new_user = rooms[data.room].pop() 
 
-
-        // sends a list of joined users to a new user
-
-        const new_user = rooms[data.room].pop() //.filter(user => user.id !== socket.id);
-
-        console.log('socketid',socket.id)
-
-        // if(rooms[data.room].length == 1){
-        //     socket.emit("memberJoined", new_user)
-        // }else{
-            socket.broadcast.emit("memberJoined", new_user)
-        // }
-        // socket.emit("memberJoined", new_user)
-
-
-        // io.sockets.to(socket.id).emit("room_users", users);
-
-        // console.log("[joined] room:" + data.room + " name: " + data.name);
+        socket.broadcast.emit("memberJoined", new_user)
 
     });
 
@@ -129,12 +107,3 @@ app.get('/', (req, res) => {
     res.send('hello, word!');
 
 })
-
-
-
-
-
-
-// app.listen(PORT, () => {
-//     console.log(`Listening on port: ${PORT}`);
-// });
