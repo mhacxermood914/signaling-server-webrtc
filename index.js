@@ -132,10 +132,7 @@ app.get('/', (req, res) => {
 
 })
 
-app.listen(process.env.PORT | PORT, () => {
-    console.log(`server is running on http://localhost:${process.env.PORT ||PORT}`)
-})
-    
+app.listen(process.env.PORT, '0.0.0.0');
 
 
 
