@@ -7,8 +7,8 @@ const PORT = 3000;
 
 const app = express();
 const socketIo = require('socket.io')
-const server = app.listen(process.env.PORT | PORT,'0.0.0.0', () => {
-    console.log('server is running on http://localhost:3000')
+const server = app.listen(process.env.PORT | PORT, () => {
+    console.log(`server is running on http://localhost:${process.env.PORT ||PORT}`)
 })
 
 
